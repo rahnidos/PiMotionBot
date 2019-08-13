@@ -2,6 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import os
 import subprocess
+import time
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -32,8 +33,9 @@ def mstop(bot, update):
     ret = ret+str(subprocess.check_output("sudo systemctl stop motion", shell=True))
     update.message.reply_text(ret)
 def snap(bot, update):
-    
+
     os.system('fswebcam -r 1280x1024 /home/pi/photo_tmp/tmp.jpg')
+    time.sleep(2)
     bot.sendPhoto(chat_id=update.message.chat.id, photo=open('/home/pi/photo_tmp/tmp.jpg', 'rb'))
     os.system('rm /home/pi/photo_tmp/tmp.jpg')
 def main():
