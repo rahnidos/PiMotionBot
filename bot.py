@@ -33,7 +33,7 @@ def mstop(bot, update):
     update.message.reply_text(ret)
 def main():
     with open('bot.key') as f:
-    key = f.readline()
+        key = f.readline()
     updater = Updater(key)
 
     dp = updater.dispatcher
