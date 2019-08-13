@@ -32,6 +32,7 @@ def mstop(bot, update):
     ret = ret+str(subprocess.check_output("sudo systemctl stop motion", shell=True))
     update.message.reply_text(ret)
 def snap(bot, update):
+    
     os.system('fswebcam -r 1280x1024 /home/pi/photo_tmp/tmp.jpg')
     bot.sendPhoto(chat_id=update.message.chat.id, photo=open('/home/pi/photo_tmp/tmp.jpg', 'rb'))
     os.system('rm /home/pi/photo_tmp/tmp.jpg')
