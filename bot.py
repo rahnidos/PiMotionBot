@@ -32,7 +32,9 @@ def mstop(bot, update):
     ret = ret+str(subprocess.check_output("sudo systemctl stop motion", shell=True))
     update.message.reply_text(ret)
 def snap(bot, update):
-    bot.sendPhoto(chat_id=update.message.chat.id, photo='http://127.0.0.1:8080/0/action/snapshot')
+    os.system('fswebcam -r 1280x1024 /home/pi/photo_tmp/tmp.jpg')
+    bot.sendPhoto(chat_id=update.message.chat.id, photo=open('/home/pi/photo_tmp/tmp.jpg', 'rb'))
+    os.system('rm /home/pi/photo_tmp/tmp.jpg')
 def main():
     with open('bot.key') as f:
         key = f.readline().strip()
