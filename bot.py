@@ -31,10 +31,12 @@ def mstop(bot, update):
     ret="Odpowiedź PI:"
     ret = ret+str(subprocess.check_output("sudo systemctl stop motion", shell=True))
     update.message.reply_text(ret)
+def snap(bot, update):
+    bot.sendPhoto(chat_id=chat_id, photo='http://127.0.0.1:8080/0/action/snapshot')
 def main():
     with open('bot.key') as f:
         key = f.readline().strip()
-    
+
     updater = Updater(key)
 
     dp = updater.dispatcher
@@ -44,6 +46,7 @@ def main():
     dp.add_handler(CommandHandler("mstat", mstat))
     dp.add_handler(CommandHandler("mstart", mstart))
     dp.add_handler(CommandHandler("mstop", mstop))
+    dp.add_handler(CommandHandler("snap", snap))
     dp.add_error_handler(error)
 
     updater.start_polling()
