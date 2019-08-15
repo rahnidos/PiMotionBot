@@ -34,7 +34,7 @@ def mstop(bot, update):
     update.message.reply_text(ret)
 def snap(bot, update):
 
-    os.system('fswebcam -r 1280x1024 /home/pi/photo_tmp/tmp.jpg')
+    os.system('fswebcam -r 640x480 -S 2 /home/pi/photo_tmp/tmp.jpg')
     time.sleep(10)
     bot.sendPhoto(chat_id=update.message.chat.id, photo=open('/home/pi/photo_tmp/tmp.jpg', 'rb'))
     time.sleep(10)
