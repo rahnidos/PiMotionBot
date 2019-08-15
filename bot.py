@@ -35,9 +35,9 @@ def mstop(bot, update):
 def snap(bot, update):
 
     os.system('fswebcam -r 640x480 -S 2 /home/pi/photo_tmp/tmp.jpg')
-    time.sleep(10)
+    time.sleep(1)
     bot.sendPhoto(chat_id=update.message.chat.id, photo=open('/home/pi/photo_tmp/tmp.jpg', 'rb'))
-    time.sleep(10)
+
     os.system('rm /home/pi/photo_tmp/tmp.jpg')
 def main():
     with open('bot.key') as f:
